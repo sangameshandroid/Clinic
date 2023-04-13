@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Clinic</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="ChooseUser">
+        <item>Choose User</item>
+        <item>Admin</item>
+        <item>Doctors</item>
+        <item>Front - Office</item>
+    </string-array>
+
+    <string-array name="Languages">
+        <item>Choose A Languages</item>
+        <item>Arabic</item>
+        <item>English</item>
+        <item>French</item>
+        <item>German</item>
+    </string-array>
+
+    <string-array name="Nationality">
+        <item>Nationality</item>
+        <item>Marco</item>
+        <item>Algerier</item>
+        <item>Tunisie</item>
+        <item>Egypt</item>
+    </string-array>
+
+    <string-array name="City">
+        <item>City</item>
+        <item>Rabat</item>
+        <item>Kenitra</item>
+        <item>Casablanca</item>
+        <item>Marakesh</item>
+    </string-array>
+
+    <string-array name="ChooseUserType">
+        <item>Choose Type</item>
+        <item>Admin</item>
+        <item>Doctor</item>
+        <item>Front - Office</item>
+    </string-array>
+
+    <string-array name="Specilization">
+        <item>Choose Specilization</item>
+        <item>Type 1 Diabetes</item>
+        <item>Multiple Sclerosis</item>
+        <item>Rheumatoid Arthritis</item>
+        <item>Allergies and Asthama</item>
+    </string-array>
+
+    <string-array name="Choosegender">
+        <item>Choose Gender</item>
+        <item>Female</item>
+        <item>Male</item>
+        <item>Trnsgender</item>
+    </string-array>
+
+
+</resources>

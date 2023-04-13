@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateInvoiceFragment"
+    android:background="#F4F7F7">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create - Invoice"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:fontFamily="times"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textColor="#7366FF"
+                android:textSize="16sp"
+                android:fontFamily="times"
+                android:drawableRight="@drawable/ic_right_arrow"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create - Invoice"
+                android:layout_margin="10dp"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:fontFamily="times"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:layout_margin="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create - Invoice"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:fontFamily="times"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F4F7F7"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:id="@+id/selectpatientspinner"
+                android:layout_height="40dp"
+                android:background="@drawable/spinner_languages"
+                android:layout_margin="10dp"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:id="@+id/paymentmodespinner"
+                android:layout_height="40dp"
+                android:background="@drawable/spinner_languages"
+                android:layout_margin="10dp"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:id="@+id/paymentstatusspinner"
+                android:layout_height="40dp"
+                android:background="@drawable/spinner_languages"
+                android:layout_margin="10dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Invoice Title"
+                android:inputType="number"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/information_barder_layout"
+                android:textAlignment="viewStart"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:background="@drawable/imagerupess_boarder">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/rupeeindian"
+                        android:background="#909497"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Invoice Title"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    android:background="@drawable/information_barder_layout"
+                    android:textAlignment="viewStart"/>
+
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Invoice"
+                android:textColor="@color/white"
+                android:background="@drawable/save_btn"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"/>
+
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
