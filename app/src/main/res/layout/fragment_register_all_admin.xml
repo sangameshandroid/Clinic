@@ -67,12 +67,14 @@
 
 
                 <ImageView
+                    android:id="@+id/img_upload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/image"
                     android:layout_gravity="center"
                     android:layout_margin="20dp" />
                 <TextView
+                    android:id="@+id/txt_upload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Drop Image / Click To Upload"
