@@ -31,18 +31,23 @@
                     android:id="@+id/hamburger"
                     android:src="@drawable/humburger"
                     android:layout_marginLeft="25dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Admin"
+                    />
 
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/notification"
-                        android:layout_marginStart="140dp"/>
+                        android:layout_marginStart="110dp"/>
 
                 <com.mikhaellopez.circularimageview.CircularImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/doctorimage"
-                    android:layout_marginLeft="5dp"/>
+                    android:layout_marginLeft="0dp"/>
 
 
 
