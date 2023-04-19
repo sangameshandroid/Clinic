@@ -4,7 +4,12 @@ public class dataholder {
     String firstname, lastname, email, mobile, date, zip, username, userpassword, address, bio, gender, language,nationality, city, usertype, specilization;
 
 
+<<<<<<< HEAD
     public dataholder(String firstname, String lastname, String email, String mobile, String date, String zip, String username, String userpassword, String address, String bio, String gender, String language, String nationality, String city, String usertype, String specilization) {
+=======
+    public dataholder(String firstname, String lastname, String email, String mobile, String date, String zip, String username, String userpassword, String address, String bio,
+                      String gender, String language, String nationality, String city, String usertype, String specilization) {
+>>>>>>> origin/master
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -15,6 +20,7 @@ public class dataholder {
         this.userpassword = userpassword;
         this.address = address;
         this.bio = bio;
+<<<<<<< HEAD
         this.gender = this.gender;
         this.language = this.language;
         this.nationality = this.nationality;
@@ -25,6 +31,14 @@ public class dataholder {
     }
 
     public dataholder() {
+=======
+        this.gender = gender;
+        this.language = language;
+        this.nationality = nationality;
+        this.city = city;
+        this.usertype = usertype;
+        this.specilization = specilization;
+>>>>>>> origin/master
 
     }
 
