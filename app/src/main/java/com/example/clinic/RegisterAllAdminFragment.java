@@ -82,8 +82,6 @@ public class RegisterAllAdminFragment extends Fragment implements AdapterView.On
     Uri filePath;
     Bitmap bitmap;
     FirebaseAuth firebaseAuth;
-    FirebaseDatabase rootNode;
-    DatabaseReference  reference;
 
     ProgressDialog progressDialog;
     StorageReference storageReference;
@@ -224,20 +222,18 @@ public class RegisterAllAdminFragment extends Fragment implements AdapterView.On
                 }
 
 
-                firebaseAuth.createUserWithEmailAndPassword(userid,userpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                firebaseAuth.createUserWithEmailAndPassword(userid, userpassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            FirebaseUser user = fAuth.getCurrentUser();
-                            String Uid = user.getUid();
-                            reference = FirebaseDatabase.getInstance().getReference().child("users").child(Uid);
-                            Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
-                            dataholder dholder = new dataholder(firstname,lastname,email,mobile,date,zip,userid,userpassword,address,bio,
-                                    gender,language,nationality,city,usertype,specilization);
-                            reference.setValue(dholder);
+                    public void onSuccess(AuthResult authResult) {
+                        Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
 
-                        }
+                        fStore.collection("User").document(FirebaseAuth.getInstance().getUid()).set(new dataholder(firstname,lastname,email,
+                                mobile,date,zip,userid,userpassword,address,bio, gender,language, nationality, city, usertype, specilization));
 
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
                     }
                 });
 
