@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new NavListAdapter(this, navitemsList);
         elv.setAdapter(adapter);
         elv.setGroupIndicator(null);
-        fragment = new RegisterAllAdminFragment();
+        fragment = new DashBoardFragment() ;
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
 
 

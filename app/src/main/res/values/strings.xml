@@ -56,5 +56,62 @@
         <item>Trnsgender</item>
     </string-array>
 
+    //Patient
+
+    <string-array name="ChoosePatientGender">
+        <item>Choose Gender</item>
+        <item>Female</item>
+        <item>Male</item>
+        <item>Trnsgender</item>
+    </string-array>
+
+    <string-array name="MartialStatus">
+        <item>Martial Status</item>
+        <item>Married</item>
+        <item>Single</item>
+        <item>Widow</item>
+    </string-array>
+
+    <string-array name="BloodGroup">
+        <item>Choose Blood Group</item>
+        <item>A +ve</item>
+        <item>B +ve</item>
+        <item>AB +ve</item>
+        <item>O</item>
+    </string-array>
+
+    <string-array name="KnownDiseases">
+        <item>Choose Known Diseases</item>
+        <item>Type 1 Diabetes</item>
+        <item>Multiple Scelrosis</item>
+        <item>Rehutoida Arthritis</item>
+        <item>Allergis and Asthama</item>
+    </string-array>
+
+    <string-array name="FamilyHistory">
+        <item>Choose Family</item>
+        <item>Mother</item>
+        <item>Father</item>
+        <item>Brother</item>
+        <item>Sister</item>
+    </string-array>
+
+    <string-array name="Diseases">
+        <item>Choose Known Diseases</item>
+        <item>Type 1 Diabetes</item>
+        <item>Multiple Scelrosis</item>
+        <item>Rehutoida Arthritis</item>
+        <item>Allergis and Asthama</item>
+    </string-array>
+
+
+
+
+
+
+
+
+
+
 
 </resources>

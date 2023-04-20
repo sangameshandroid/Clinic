@@ -71,12 +71,14 @@
                 android:background="@drawable/border_layout"
                 android:layout_margin="20dp">
                 <ImageView
+                    android:id="@+id/patient_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/image"
                     android:layout_gravity="center"
                     android:layout_margin="20dp" />
                 <TextView
+                    android:id="@+id/patient_img_upload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Drop Image / Click To Upload"
@@ -94,6 +96,7 @@
                 android:background="#FFFFFF">
 
                 <EditText
+                    android:id="@+id/patient_fname"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="First Name"
@@ -104,6 +107,7 @@
                     android:background="@drawable/information_barder_layout"
                     android:textAlignment="viewStart"/>
                 <EditText
+                    android:id="@+id/patient_lname"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="Last Name"
@@ -113,6 +117,7 @@
                     android:background="@drawable/information_barder_layout"
                     android:textAlignment="viewStart"/>
                 <EditText
+                    android:id="@+id/patient_email"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="Email"
@@ -122,6 +127,7 @@
                     android:background="@drawable/information_barder_layout"
                     android:textAlignment="viewStart"/>
                 <EditText
+                    android:id="@+id/patient_mobile"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="Mobile No"
@@ -131,6 +137,7 @@
                     android:background="@drawable/information_barder_layout"
                     android:textAlignment="viewStart"/>
                 <EditText
+                    android:id="@+id/pastient_date"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="Birthday"
@@ -144,6 +151,7 @@
 
             </LinearLayout>
             <Spinner
+                android:layout_gravity=""
                 android:layout_width="match_parent"
                 android:id="@+id/genderspinner"
                 android:layout_height="40dp"
@@ -163,6 +171,7 @@
                 android:background="@drawable/spinner_languages"
                 android:layout_margin="10dp"/>
             <EditText
+                android:id="@+id/patient_weight"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="Patient Weight"
@@ -172,6 +181,7 @@
                 android:background="@drawable/information_barder_layout"
                 android:textAlignment="viewStart"/>
             <EditText
+                android:id="@+id/patient_height"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="Patient Height"
@@ -183,6 +193,7 @@
                 />
 
             <EditText
+                android:id="@+id/patient_address"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:hint="Address"
@@ -192,6 +203,7 @@
                 android:background="@drawable/information_barder_layout"
                 android:textAlignment="viewStart"/>
             <EditText
+                android:id="@+id/patient_history"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:hint="Patient History"
@@ -255,7 +267,7 @@
                 android:textSize="16sp"/>
             <Spinner
                 android:layout_width="match_parent"
-                android:id="@+id/patienttypespinner"
+                android:id="@+id/diseasesspinner"
                 android:layout_height="40dp"
                 android:background="@drawable/spinner_languages"
                 android:layout_margin="10dp"/>
@@ -266,6 +278,7 @@
                 android:padding="10dp"
                 android:textSize="16sp"/>
             <EditText
+                android:id="@+id/patient_period"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="Period"
@@ -275,24 +288,16 @@
                 android:background="@drawable/information_barder_layout"
                 android:textAlignment="viewStart"/>
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/patient_register_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Register Patient"
                 android:textColor="@color/white"
                 android:background="@drawable/save_btn"
                 android:layout_gravity="right"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:padding="10dp"/>
         </LinearLayout>
-
-
-
-
-
-
-
-
-
-
 
     </LinearLayout>
 

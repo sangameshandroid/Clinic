@@ -6,12 +6,13 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:background="@color/pressedcolor">
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/white"
-            android:id="@+id/toolbar">
+            android:id="@+id/toolbar"
+            android:background="@color/pressedcolor">
+
             <LinearLayout
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
