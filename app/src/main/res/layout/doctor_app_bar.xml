@@ -30,39 +30,25 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:id="@+id/hamburger"
-                    android:src="@drawable/hamburgerdoctor"
+                    android:src="@drawable/menubar"
                     android:layout_marginLeft="25dp"/>
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:src="@drawable/prescription"
                         android:layout_marginStart="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Doctor"
-                    />
-
-
 
                 <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/notification"
-                        android:layout_marginStart="40dp"/>
+                        android:src="@drawable/bell"
+                        android:layout_marginStart="100dp"/>
                 <com.mikhaellopez.circularimageview.CircularImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/doctorimage"
-                    android:layout_marginLeft="5dp"/>
-
-
-
-
-
-
-
+                    android:layout_marginLeft="8dp"/>
 
 
 

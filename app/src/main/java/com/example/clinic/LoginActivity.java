@@ -10,17 +10,24 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         signin_btn = findViewById(R.id.login_btn);
+        txt = findViewById(R.id.txt);
 
         login_email = findViewById(R.id.login_email);
         login_password = findViewById(R.id.login_password);
@@ -72,72 +80,116 @@ public class LoginActivity extends AppCompatActivity {
         checkFeild(login_email);
         checkFeild(login_password);
 
-        signin_btn.setOnClickListener(new View.OnClickListener() {
+        txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String loginemail = login_email.getText().toString();
-                String loginpassword = login_password.getText().toString();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            }
+        });
+
+        signin_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                String username = login_email.getText().toString();
+                String password = login_password.getText().toString();
+                ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.setMessage("Signing in...");
+                progressDialog.setCancelable(false);
+                progressDialog.setIndeterminate(false);
+
+                View view = LayoutInflater.from(LoginActivity.this).inflate(R.layout.custom_progressbar, null);
+                progressDialog.setView(view);
 
 
+                ProgressBar progressBar = view.findViewById(R.id.progressBar);
 
-                if (loginemail.isEmpty() || loginpassword.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Please fill in both fields", Toast.LENGTH_SHORT).show();
+                progressBar.setProgressBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00C0FF")));
+
+
+                if (TextUtils.isEmpty(username)) {
+                    Toast.makeText(LoginActivity.this, "Please enter a valid user ID", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                firebaseAuth.signInWithEmailAndPassword(loginemail, loginpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(LoginActivity.this, "Please enter a valid password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
+                    Toast.makeText(LoginActivity.this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                progressDialog.show();
+
+                mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        progressDialog.dismiss();
+                        if(task.isSuccessful()){
                             String uid = task.getResult().getUser().getUid();
-                            DatabaseReference userref = FirebaseDatabase.getInstance().getReference().child("User").child(uid);
+                            DatabaseReference userref = FirebaseDatabase.getInstance().getReference("users").child(uid) ;
                             userref.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     String usertype = snapshot.child("usertype").getValue(String.class);
-                                    if (usertype != null) {
-                                        switch (usertype) {
-                                            // switch cases here
 
-                                            case "Admin":
-                                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                                    if (usertype != null) {
+
+                                        switch (usertype) {
+                                            case "Doctor":
+                                                String firstname = snapshot.child("firstname").getValue(String.class);
+                                                String lastname = snapshot.child("lastname").getValue(String.class);
+                                                String specialization = snapshot.child("specialization").getValue(String.class);
+                                                String imageuri = snapshot.child("imageurl").getValue(String.class);
+                                                Intent intent = new Intent(LoginActivity.this, DoctorAdminActivity.class);
+                                                intent.putExtra("first", firstname);
+                                                intent.putExtra("last", lastname);
+                                                intent.putExtra("special", specialization);
+                                                intent.putExtra("imageuri", imageuri);
                                                 startActivity(intent);
                                                 break;
-                                            case "Doctor":
-                                                Intent intent1 = new Intent(LoginActivity.this, DoctorAdminActivity.class);
+                                            case "Admin":
+                                                String first = snapshot.child("firstname").getValue(String.class);
+                                                String last = snapshot.child("lastname").getValue(String.class);
+                                                String image = snapshot.child("imageurl").getValue(String.class);
+                                                Intent intent1 = new Intent(LoginActivity.this, MainActivity.class);
+                                                intent1.putExtra("firstname", first);
+                                                intent1.putExtra("lastname", last);
+                                                intent1.putExtra("image", image);
                                                 startActivity(intent1);
                                                 break;
                                             case "Front - Office":
+                                                String firstName = snapshot.child("firstname").getValue(String.class);
+                                                String lastName = snapshot.child("lastname").getValue(String.class);
+                                                String Image = snapshot.child("imageurl").getValue(String.class);
                                                 Intent intent2 = new Intent(LoginActivity.this, FrontOfficeActivity.class);
+                                                intent2.putExtra("First", firstName);
+                                                intent2.putExtra("Last", lastName);
+                                                intent2.putExtra("Image", Image);
                                                 startActivity(intent2);
-                                                break;
-                                            default:
-                                                Toast.makeText(LoginActivity.this, "Invalid User Type", Toast.LENGTH_SHORT).show();
                                                 break;
                                         }
                                     }
+
                                 }
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
                                     Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+
                                 }
                             });
-                        } else {
-                            Toast.makeText(LoginActivity.this, "failed to sign in", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(LoginActivity.this, "Invalid user type", Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
-
-            }
-
+                });            }
         });
 
-    /*    ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(this, R.array.ChooseUserType, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        chooseuserpinner.setAdapter(adapter);
-
-        chooseuserpinner.setOnItemSelectedListener(this);*/
 
 
 
@@ -154,23 +206,4 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 
-   /* @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-        String choosegender = adapterView.getItemAtPosition(i).toString();
-
-
-
-        Toast.makeText(getApplicationContext(), choosegender, Toast.LENGTH_SHORT).show();
-        // Clear login credentials when user switches user type
-        login_email.setText("");
-        login_password.setText("");
-
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }*/
 }

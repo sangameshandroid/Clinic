@@ -8,27 +8,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+public class AllDoctorsListFragment extends Fragment {
 
-public class AllDoctorFragment extends Fragment {
 
 
-    public AllDoctorFragment() {
+    public AllDoctorsListFragment() {
         // Required empty public constructor
     }
-
-
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_doctor, container, false);
+        View view = inflater.inflate(R.layout.fragment_all_doctors_list, container, false);
+        return view;
     }
 }

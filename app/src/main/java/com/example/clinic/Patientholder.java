@@ -3,10 +3,10 @@ package com.example.clinic;
 import android.widget.Spinner;
 
 public class Patientholder {
-    String fname, lname, email, mobile, date, weight, height, address, history, period,
+    String fname, lname, email, mobile, date, weight, height, address, history, period,profile,
     gender, martialstatus, bloodgroup, knowndiseases, familyhistory, diseases;
 
-    public Patientholder(String fname, String lname, String email, String mobile, String date, String weight, String height, String address, String history, String period, String gender, String martialstatus, String bloodgroup, String knowndiseases, String familyhistory, String diseases) {
+    public Patientholder(String fname, String lname, String email, String mobile, String date, String weight, String height, String address, String history, String period,String profile, String gender, String martialstatus, String bloodgroup, String knowndiseases, String familyhistory, String diseases) {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
@@ -17,6 +17,7 @@ public class Patientholder {
         this.address = address;
         this.history = history;
         this.period = period;
+        this.profile = profile;
         this.gender = gender;
         this.martialstatus = martialstatus;
         this.bloodgroup = bloodgroup;
@@ -103,6 +104,14 @@ public class Patientholder {
 
     public void setPeriod(String period) {
         this.period = period;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profileimg) {
+        this.profile = profile;
     }
 
     public String getGender() {

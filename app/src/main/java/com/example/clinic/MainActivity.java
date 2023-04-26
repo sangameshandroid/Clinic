@@ -128,17 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (groupPosition){
 
-                    case 1:
-                        switch (childPosition){
 
-                            case 0:
-                                fragment = new AllDoctorFragment();
-                                break;
-                            case 1:
-                                fragment = new DoctorsProfileFragment();
-                                break;
-                        }
-                        break;
                   /*  case 2:
                         switch (childPosition){
                             case 0:
@@ -160,6 +150,18 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         }
                         break;
+                    case 2:
+                        switch (childPosition){
+
+                            case 0:
+                                fragment = new AllDoctorsListFragment();
+                                break;
+                            case 1:
+                                fragment = new DoctorsProfilesFragment();
+                                break;
+                        }
+                        break;
+
 
                 /*    case 6:
                         switch (childPosition){
@@ -215,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
 
         navitem.add(new navitems("DashBoard", R.drawable.dashboard1,null));
         navitem.add(new navitems("Register", R.drawable.dashboard1, null));
+
         List<SubNavItem> doc = new ArrayList<>();
         doc.add(new SubNavItem("All Doctors"));
         doc.add(new SubNavItem("Doctor's Profile"));

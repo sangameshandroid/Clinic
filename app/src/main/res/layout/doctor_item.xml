@@ -4,78 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="0dp"
-    android:background="#AFABAA">
-
-<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+    android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="264dp"
-        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
         android:background="@color/white">
 
-
         <TextView
-            android:id="@+id/txt_fname"
+            android:id="@+id/doctor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:padding="8dp"
+            android:text="Dr. Tom Cruise"
             android:fontFamily="times"
+            android:textColor="#000000"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:padding="8dp"
-             android:textSize="16sp"
-            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txt_mnumber"
+            android:id="@+id/doctor_specilization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="times"
-            android:textSize="16sp"
+            android:layout_margin="6dp"
             android:padding="8dp"
-            android:textColor="@color/black"
+            android:text="Endocrinologist"
+            android:fontFamily="times"
+            android:textColor="#000000"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_fname"/>
+            app:layout_constraintTop_toBottomOf="@id/doctor_name" />
 
-        <TextView
-            android:id="@+id/txt_gender"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="times"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_mnumber" />
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="85dp">
 
-        <TextView
-            android:id="@+id/txt_martial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="times"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_gender"
-            tools:ignore="MissingConstraints" />
+
+        </LinearLayout>
 
         <ImageView
-            android:id="@+id/img_p"
+            android:id="@+id/doctor_img"
             android:layout_width="143dp"
             android:layout_height="208dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="4dp"
-            android:src="@drawable/nopictures"
+            android:src="@drawable/femaledoctor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -111,10 +89,7 @@
 
 
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-
 
 
 </LinearLayout>

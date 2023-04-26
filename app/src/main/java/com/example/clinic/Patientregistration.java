@@ -1,15 +1,22 @@
 package com.example.clinic;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +32,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,13 +45,17 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.UUID;
+
 
 public class Patientregistration extends Fragment implements AdapterView.OnItemSelectedListener {
     EditText patient_fname, patient_lname, patient_email, patient_mobile, patient_date, patient_weight, patient_height, patient_address, patient_history, patient_period;
     Spinner genderspinner, martialstatusspinner, bloodgroupspinner, knowndiseasesspinner, familyhistoryzspinner, diseasesspinner;
 
-    ImageView patient_img;
-    TextView patient_img_upload;
+    ImageView patient_imgupload;
+    TextView txt_upload;
     Button patient_register_btn;
 
     private static final int PICK_IMAGE_CODE = 1000;
@@ -55,6 +68,12 @@ public class Patientregistration extends Fragment implements AdapterView.OnItemS
     FirebaseAuth firebaseAuth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+
+    private Bitmap capturedImage = null;
+    private Uri selectedImage = null;
+    private Bitmap imagebitmap = null;
+    private ActivityResultLauncher<Intent> galleryLauncher;
+    private ActivityResultLauncher<Intent> cameraLauncher;
 
 
 
@@ -71,7 +90,7 @@ public class Patientregistration extends Fragment implements AdapterView.OnItemS
     }
 
 
-        @Override
+      /*  @Override
         public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
             if (requestCode == PICK_IMAGE_CODE){
@@ -102,7 +121,7 @@ public class Patientregistration extends Fragment implements AdapterView.OnItemS
 
             }
 
-        }
+        }*/
 
 
     @SuppressLint("MissingInflatedId")
@@ -123,8 +142,8 @@ public class Patientregistration extends Fragment implements AdapterView.OnItemS
         patient_address = view.findViewById(R.id.patient_address);
         patient_history = view.findViewById(R.id.patient_history);
         patient_period = view.findViewById(R.id.patient_period);
-        patient_img = view.findViewById(R.id.patient_img);
-        patient_img_upload = view.findViewById(R.id.patient_img_upload);
+        patient_imgupload = view.findViewById(R.id.patient_imgupload);
+        txt_upload = view.findViewById(R.id.txt_uploadimage);
         patient_register_btn = view.findViewById(R.id.patient_register_btn);
 
         //Spinner
@@ -140,10 +159,61 @@ public class Patientregistration extends Fragment implements AdapterView.OnItemS
 
 
         firebaseAuth = FirebaseAuth.getInstance();
-        storageReference = FirebaseStorage.getInstance().getReference("image_upload");
+
+            patient_imgupload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                    builder.setTitle("Choose an Option");
+                    builder.setItems(new CharSequence[]{"Take Photo", "Choose from Gallery"}, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which) {
+                                case 0:
+                                    Intent cameraintent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                    cameraLauncher.launch(cameraintent);
+                                    break;
+                                case 1:
+                                    Intent galleryintent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    galleryLauncher.launch(galleryintent);
+                                    break;
+                            }
+                        }
+                    });
+                    builder.show();
+                }
+            });
 
 
-        patient_img_upload.setOnClickListener(new View.OnClickListener() {
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if(result.getResultCode()==RESULT_OK){
+                        assert result.getData() != null;
+                        selectedImage = result.getData().getData();
+                        patient_imgupload.setImageURI(selectedImage);
+                    }
+                });
+
+        cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        assert result.getData() != null;
+                        if (result.getData().getExtras().get("data") != null) {
+                            capturedImage = (Bitmap) result.getData().getExtras().get("data");
+                            patient_imgupload.setImageBitmap(capturedImage);
+                        } else {
+                            selectedImage = result.getData().getData();
+                            try {
+                                capturedImage = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(), selectedImage);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+
+
+     /*   patient_img_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -152,94 +222,153 @@ public class Patientregistration extends Fragment implements AdapterView.OnItemS
                 startActivityForResult(intent.createChooser(intent,"Select Picture"), PICK_IMAGE_CODE);
 
             }
-        });
+        });*/
 
         patient_register_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String fname = patient_fname.getText().toString();
-                String lname = patient_lname.getText().toString();
-                String email = patient_email.getText().toString();
-                String mobile = patient_mobile.getText().toString();
-                String date = patient_date.getText().toString();
-                String weight = patient_weight.getText().toString();
-                String height = patient_height.getText().toString();
-                String address = patient_address.getText().toString();
-                String history = patient_history.getText().toString();
-                String period = patient_period.getText().toString();
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        String fname = patient_fname.getText().toString();
+                                                        String lname = patient_lname.getText().toString();
+                                                        String email = patient_email.getText().toString();
+                                                        String mobile = patient_mobile.getText().toString();
+                                                        String date = patient_date.getText().toString();
+                                                        String weight = patient_weight.getText().toString();
+                                                        String height = patient_height.getText().toString();
+                                                        String address = patient_address.getText().toString();
+                                                        String history = patient_history.getText().toString();
+                                                        String period = patient_period.getText().toString();
+
 //
-                String gender = genderspinner.getSelectedItem().toString();
-                String martalstatus = martialstatusspinner.getSelectedItem().toString();
-                String bloodgroup = bloodgroupspinner.getSelectedItem().toString();
-                String knowndiseases = knowndiseasesspinner.getSelectedItem().toString();
-                String familyhistory = familyhistoryzspinner.getSelectedItem().toString();
-                String diseases = diseasesspinner.getSelectedItem().toString();
+                                                        String gender = genderspinner.getSelectedItem().toString();
+                                                        String martalstatus = martialstatusspinner.getSelectedItem().toString();
+                                                        String bloodgroup = bloodgroupspinner.getSelectedItem().toString();
+                                                        String knowndiseases = knowndiseasesspinner.getSelectedItem().toString();
+                                                        String familyhistory = familyhistoryzspinner.getSelectedItem().toString();
+                                                        String diseases = diseasesspinner.getSelectedItem().toString();
 
-                rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference("patientinformation");
+                                                        if (selectedImage != null || capturedImage != null) {
+                                                            imagebitmap = capturedImage;
+                                                            if (imagebitmap == null) {
+                                                                try {
+                                                                    imagebitmap = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(), selectedImage);
+                                                                } catch (IOException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                            }
+                                                        } else {
+                                                            Toast.makeText(requireContext(), "Please Select a Profile Image", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                        String filename = UUID.randomUUID().toString() + ".jpg";
+                                                        StorageReference ref = FirebaseStorage.getInstance().getReference().child("patientProfile/" + filename);
+                                                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                                        imagebitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                                                        byte[] imagedata = baos.toByteArray();
+                                                        UploadTask uploadTask = ref.putBytes(imagedata);
 
-                Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
-                Patientholder pholder = new Patientholder(fname,lname,email,mobile,date,weight, height,address,history,period,
-                            gender,martalstatus,bloodgroup,knowndiseases,familyhistory,diseases);
-                    reference.push().setValue(pholder);
+                                                        uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                                                if (task.isSuccessful()) {
+                                                                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
-                }
+                                                                        @Override
+                                                                        public void onSuccess(Uri uri) {
+                                                                            String profileImage = uri.toString();
 
+                                                                            rootNode = FirebaseDatabase.getInstance();
+                                                                            reference = rootNode.getReference().child("patientinformation");
 
-
-
-
-        });
-
-
-
-        //Setting of Spinner
-
-        //Gender Spinner
-        ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(getContext(), R.array.ChoosePatientGender, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        genderspinner.setAdapter(adapter);
-
-        genderspinner.setOnItemSelectedListener(this);
-
-        //Martial Status Spinner
-        ArrayAdapter<CharSequence> adapter1= ArrayAdapter.createFromResource(getContext(), R.array.MartialStatus, android.R.layout.simple_spinner_item);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        martialstatusspinner.setAdapter(adapter1);
-
-        martialstatusspinner.setOnItemSelectedListener(this);
-
-        //Blood Group Spinner
-        ArrayAdapter<CharSequence> adapter2= ArrayAdapter.createFromResource(getContext(), R.array.BloodGroup, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        bloodgroupspinner.setAdapter(adapter2);
-
-        bloodgroupspinner.setOnItemSelectedListener(this);
-
-        //Known Disesaes Spinner
-        ArrayAdapter<CharSequence> adapter3= ArrayAdapter.createFromResource(getContext(), R.array.KnownDiseases, android.R.layout.simple_spinner_item);
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        knowndiseasesspinner.setAdapter(adapter3);
-
-        knowndiseasesspinner.setOnItemSelectedListener(this);
-
-        //Family History
-        ArrayAdapter<CharSequence> adapter4= ArrayAdapter.createFromResource(getContext(), R.array.FamilyHistory, android.R.layout.simple_spinner_item);
-        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        familyhistoryzspinner.setAdapter(adapter4);
-
-        familyhistoryzspinner.setOnItemSelectedListener(this);
-
-        //Diseases
-        ArrayAdapter<CharSequence> adapter6= ArrayAdapter.createFromResource(getContext(), R.array.Diseases, android.R.layout.simple_spinner_item);
-        adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        diseasesspinner.setAdapter(adapter6);
-
-        diseasesspinner.setOnItemSelectedListener(this);
+                                                                            Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
+                                                                            Patientholder pholder = new Patientholder(fname, lname, email, mobile, date, weight, height, address, history, period,profileImage,
+                                                                                    gender, martalstatus, bloodgroup, knowndiseases, familyhistory, diseases);
+                                                                            String patientId = reference.push().getKey();
 
 
-        return view;
-    }
+                                                                            reference.child(patientId).setValue(pholder).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                @Override
+                                                                                public void onSuccess(Void unused) {
+                                                                                    Toast.makeText(requireContext(), "Data Successfully Saved", Toast.LENGTH_SHORT).show();
+                                                                                }
+                                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                                                @Override
+                                                                                public void onFailure(@NonNull Exception e) {
+                                                                                    Toast.makeText(requireContext(), "Failed to save Data", Toast.LENGTH_SHORT).show();
+                                                                                }
+                                                                            });
+                                                                        }
+                                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                                        @Override
+                                                                        public void onFailure(@NonNull Exception e) {
+                                                                            Toast.makeText(requireContext(), "Image Url can't Be Downloaded", Toast.LENGTH_SHORT).show();
+
+                                                                        }
+                                                                    });
+                                                                } else {
+                                                                    Toast.makeText(requireContext(), "Failed to Upload Image", Toast.LENGTH_SHORT).show();
+
+                                                                }
+
+                                                            }
+
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception e) {
+                                                                Toast.makeText(requireContext(), "Upload Task Failed", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        });
+
+                                                    }
+                                                });
+
+
+                //Setting of Spinner
+
+                //Gender Spinner
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.ChoosePatientGender, android.R.layout.simple_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                genderspinner.setAdapter(adapter);
+
+                genderspinner.setOnItemSelectedListener(this);
+
+                //Martial Status Spinner
+                ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(getContext(), R.array.MartialStatus, android.R.layout.simple_spinner_item);
+                adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                martialstatusspinner.setAdapter(adapter1);
+
+                martialstatusspinner.setOnItemSelectedListener(this);
+
+                //Blood Group Spinner
+                ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(getContext(), R.array.BloodGroup, android.R.layout.simple_spinner_item);
+                adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                bloodgroupspinner.setAdapter(adapter2);
+
+                bloodgroupspinner.setOnItemSelectedListener(this);
+
+                //Known Disesaes Spinner
+                ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getContext(), R.array.KnownDiseases, android.R.layout.simple_spinner_item);
+                adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                knowndiseasesspinner.setAdapter(adapter3);
+
+                knowndiseasesspinner.setOnItemSelectedListener(this);
+
+                //Family History
+                ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(getContext(), R.array.FamilyHistory, android.R.layout.simple_spinner_item);
+                adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                familyhistoryzspinner.setAdapter(adapter4);
+
+                familyhistoryzspinner.setOnItemSelectedListener(this);
+
+                //Diseases
+                ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(getContext(), R.array.Diseases, android.R.layout.simple_spinner_item);
+                adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                diseasesspinner.setAdapter(adapter6);
+
+                diseasesspinner.setOnItemSelectedListener(this);
+
+
+                return view;
+            }
+
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -249,11 +378,6 @@ public class Patientregistration extends Fragment implements AdapterView.OnItemS
         String knowndiseases = adapterView.getItemAtPosition(i).toString();
         String familyhistory = adapterView.getItemAtPosition(i).toString();
         String diseases = adapterView.getItemAtPosition(i).toString();
-
-
-
-
-
 
     }
 

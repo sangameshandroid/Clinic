@@ -137,6 +137,8 @@ public class NavListAdapter extends BaseExpandableListAdapter {
                           FragmentManager fm = ((MainActivity) context).getSupportFragmentManager();
                           FragmentTransaction ft = fm.beginTransaction();
                           ft.replace(R.id.container, fragment);
+                          ft.addToBackStack(null);
+
                           ft.commit();
                       }
 

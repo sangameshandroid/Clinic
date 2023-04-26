@@ -4,12 +4,7 @@ public class dataholder {
     String firstname, lastname, email, mobile, date, zip, username, userpassword, address, bio, gender, language,nationality, city, usertype, specilization;
 
 
-<<<<<<< HEAD
     public dataholder(String firstname, String lastname, String email, String mobile, String date, String zip, String username, String userpassword, String address, String bio, String gender, String language, String nationality, String city, String usertype, String specilization) {
-=======
-    public dataholder(String firstname, String lastname, String email, String mobile, String date, String zip, String username, String userpassword, String address, String bio,
-                      String gender, String language, String nationality, String city, String usertype, String specilization) {
->>>>>>> origin/master
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -20,74 +15,13 @@ public class dataholder {
         this.userpassword = userpassword;
         this.address = address;
         this.bio = bio;
-<<<<<<< HEAD
-        this.gender = this.gender;
-        this.language = this.language;
-        this.nationality = this.nationality;
-        this.city = this.city;
-        this.usertype = this.usertype;
-        this.specilization = this.specilization;
-
-    }
-
-    public dataholder() {
-=======
         this.gender = gender;
         this.language = language;
         this.nationality = nationality;
         this.city = city;
         this.usertype = usertype;
         this.specilization = specilization;
->>>>>>> origin/master
 
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getUsertype() {
-        return usertype;
-    }
-
-    public void setUsertype(String usertype) {
-        this.usertype = usertype;
-    }
-
-    public String getSpecilization() {
-        return specilization;
-    }
-
-    public void setSpecilization(String specilization) {
-        this.specilization = specilization;
     }
 
     public String getFirstname() {
@@ -168,5 +102,53 @@ public class dataholder {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getUsertype() {
+        return usertype;
+    }
+
+    public void setUsertype(String usertype) {
+        this.usertype = usertype;
+    }
+
+    public String getSpecilization() {
+        return specilization;
+    }
+
+    public void setSpecilization(String specilization) {
+        this.specilization = specilization;
     }
 }

@@ -86,6 +86,9 @@ public class RegisterAllAdminFragment extends Fragment implements AdapterView.On
     ProgressDialog progressDialog;
     StorageReference storageReference;
 
+    FirebaseDatabase rootnode;
+    DatabaseReference reference;
+
 
     public RegisterAllAdminFragment() {
         // Required empty public constructor
@@ -181,9 +184,6 @@ public class RegisterAllAdminFragment extends Fragment implements AdapterView.On
             }
         });
 
-
-
-
         btn_user_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -221,21 +221,48 @@ public class RegisterAllAdminFragment extends Fragment implements AdapterView.On
                     return;
                 }
 
+                firebaseAuth.createUserWithEmailAndPassword(userid, userpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
 
-                firebaseAuth.createUserWithEmailAndPassword(userid, userpassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                       /* fStore.collection("User").document(FirebaseAuth.getInstance().getUid()).set(new dataholder(firstname,lastname,email,
+                                mobile,date,zip,userid,userpassword,address,bio, gender,language, nationality, city, usertype, specilization));*/
+
+                        rootnode = FirebaseDatabase.getInstance();
+                        reference = rootnode.getReference("users");
+
+                        dataholder dholder = new dataholder(firstname,lastname,email,
+                                mobile,date,zip,userid,userpassword,address,bio, gender,language, nationality, city, usertype, specilization);
+                        Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
+                        reference.push().setValue(dholder);
+                    }
+                });
+
+
+               /* firebaseAuth.createUserWithEmailAndPassword(userid, userpassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
 
-                        fStore.collection("User").document(FirebaseAuth.getInstance().getUid()).set(new dataholder(firstname,lastname,email,
-                                mobile,date,zip,userid,userpassword,address,bio, gender,language, nationality, city, usertype, specilization));
+                       /* fStore.collection("User").document(FirebaseAuth.getInstance().getUid()).set(new dataholder(firstname,lastname,email,
+                                mobile,date,zip,userid,userpassword,address,bio, gender,language, nationality, city, usertype, specilization));*/
+
+                      /*  rootnode = FirebaseDatabase.getInstance();
+                        reference = rootnode.getReference("users");
+
+                        dataholder dholder = new dataholder(firstname,lastname,email,
+                                mobile,date,zip,userid,userpassword,address,bio, gender,language, nationality, city, usertype, specilization);
+                        Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
+                        reference.setValue(dholder);
+
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                     }
-                });
+                });*/
 
             }
         });

@@ -71,14 +71,14 @@
                 android:background="@drawable/border_layout"
                 android:layout_margin="20dp">
                 <ImageView
-                    android:id="@+id/patient_img"
+                    android:id="@+id/patient_imgupload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/image"
                     android:layout_gravity="center"
                     android:layout_margin="20dp" />
                 <TextView
-                    android:id="@+id/patient_img_upload"
+                    android:id="@+id/txt_ulploadimg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Drop Image / Click To Upload"

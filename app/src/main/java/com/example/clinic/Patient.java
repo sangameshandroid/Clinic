@@ -1,69 +1,70 @@
 package com.example.clinic;
 
 public class Patient {
-    String patientfirstame;
-    String patientlastname;
-    String patientmobile;
-    String patientmartialstatus;
-    String patientgender;
-    int patientimg;
+    String fname;
+    String lname;
+    String mobile;
+    String gender;
+    String martial;
+    String profile;
 
-
-
-    public Patient(String patientfirstame, String patientlastname, String patientmobile, String patientmartialstatus, String patientgender, int patientimg) {
-        this.patientfirstame = patientfirstame;
-        this.patientlastname = patientlastname;
-        this.patientmobile = patientmobile;
-        this.patientmartialstatus = patientmartialstatus;
-        this.patientgender = patientgender;
-        this.patientimg = patientimg;
+    public Patient(String fname, String lname, String mobile, String gender, String martial, String profile) {
+        this.fname = fname;
+        this.lname = lname;
+        this.mobile = mobile;
+        this.gender = gender;
+        this.martial = martial;
+        this.profile = profile;
     }
 
-    public String getPatientfirstame() {
-        return patientfirstame;
+    public Patient() {
     }
 
-    public void setPatientfirstame(String patientfirstame) {
-        this.patientfirstame = patientfirstame;
+    public String getFname() {
+        return fname;
     }
 
-    public String getPatientlastname() {
-        return patientlastname;
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
-    public void setPatientlastname(String patientlastname) {
-        this.patientlastname = patientlastname;
+    public String getLname() {
+        return lname;
     }
 
-    public String getPatientmobile() {
-        return patientmobile;
+    public void setLname(String lname) {
+        this.lname = lname;
     }
 
-    public void setPatientmobile(String patientmobile) {
-        this.patientmobile = patientmobile;
+    public String getMobile() {
+        return mobile;
     }
 
-    public String getPatientmartialstatus() {
-        return patientmartialstatus;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
-    public void setPatientmartialstatus(String patientmartialstatus) {
-        this.patientmartialstatus = patientmartialstatus;
+    public String getGender() {
+        return gender;
     }
 
-    public int getPatientimg() {
-        return patientimg;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public void setPatientimg(int patientimg) {
-        this.patientimg = patientimg;
-    }
-    public String getPatientgender() {
-        return patientgender;
-    }
-    public void setPatientgender(String patientgender) {
-        this.patientgender = patientgender;
+    public String getMartial() {
+        return martial;
     }
 
+    public void setMartial(String martial) {
+        this.martial = martial;
+    }
 
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
 }
