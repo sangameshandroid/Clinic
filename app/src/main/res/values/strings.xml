@@ -104,5 +104,30 @@
         <item>Allergis and Asthama</item>
     </string-array>
 
+    <string-array name="TradeName">
+        <item>Choose Trade Name</item>
+        <item>Alcohol</item>
+        <item>Ayahuasca</item>
+        <item>Cocaine</item>
+        <item>DMT</item>
+    </string-array>
+
+    <string-array name="GenericName">
+        <item>Choose Generic Name</item>
+        <item>Alcohol</item>
+        <item>Ayahuasca</item>
+        <item>Cocaine</item>
+        <item>DMT</item>
+    </string-array>
+
+    <string-array name="AppointTimings">
+        <item>Choose Appointment Timings</item>
+        <item>7:00 - 7:30</item>
+        <item>7:30 - 8:00</item>
+        <item>8:00 - 8:30</item>
+        <item>8:30 - 9:00</item>
+    </string-array>
+
+
 
 </resources>

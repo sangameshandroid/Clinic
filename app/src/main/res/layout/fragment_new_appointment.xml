@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewAppointmentFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Appointment"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:fontFamily="times"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add New Appointment"
+            android:layout_marginBottom="10dp"
+            android:layout_margin="10dp"
+            android:textSize="12sp"
+            android:fontFamily="times"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="#7366FF"
+            android:textSize="16sp"
+            android:fontFamily="times"
+            android:drawableRight="@drawable/ic_right_arrow"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Appointment"
+            android:layout_margin="10dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:fontFamily="times"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:layout_margin="10dp">
+        <EditText
+            android:id="@+id/date_appointment"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Select Date Of Appointment"
+            android:inputType="textPersonName"
+            android:layout_margin="10dp"
+            android:fontFamily="times"
+            android:padding="10dp"
+            android:background="@drawable/information_barder_layout"
+            android:textAlignment="viewStart"
+            android:drawableRight="@drawable/date"/>
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/timespinner"
+            android:layout_height="40dp"
+            android:background="@drawable/spinner_languages"
+            android:layout_margin="10dp"/>
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/patientnamespinner"
+            android:layout_height="40dp"
+            android:background="@drawable/spinner_languages"
+            android:layout_margin="10dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_appointment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Appointment"
+            android:textColor="@color/white"
+            android:background="@drawable/save_btn"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

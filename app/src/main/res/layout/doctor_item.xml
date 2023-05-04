@@ -12,18 +12,30 @@
         android:background="@color/white">
 
         <TextView
-            android:id="@+id/doctor_name"
+            android:id="@+id/doctor_firstname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             android:padding="8dp"
-            android:text="Dr. Tom Cruise"
             android:fontFamily="times"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/doctor_lastname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:padding="8dp"
+            android:fontFamily="times"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/doctor_firstname" />
+
 
         <TextView
             android:id="@+id/doctor_specilization"
@@ -31,34 +43,25 @@
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             android:padding="8dp"
-            android:text="Endocrinologist"
             android:fontFamily="times"
             android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/doctor_name" />
+            app:layout_constraintTop_toBottomOf="@id/doctor_lastname" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="85dp">
-
-
-        </LinearLayout>
 
         <ImageView
             android:id="@+id/doctor_img"
             android:layout_width="143dp"
             android:layout_height="208dp"
-            android:src="@drawable/femaledoctor"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/view_icon1"
+            android:id="@+id/doctorview_icon1"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="28dp"
@@ -75,18 +78,17 @@
             android:layout_marginBottom="20dp"
             android:src="@drawable/update"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/view_icon1"
+            app:layout_constraintStart_toEndOf="@id/doctorview_icon1"
             tools:ignore="UnknownId" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="20dp"
             android:layout_marginBottom="20dp"
             android:src="@drawable/delete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/update_icon1" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

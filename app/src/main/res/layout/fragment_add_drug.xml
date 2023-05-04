@@ -72,6 +72,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:background="#EAEBED"/>
+            <EditText
+                android:id="@+id/drugs_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Drug ID"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/information_barder_layout"
+                android:textAlignment="viewStart" />
+
 
 
             <Spinner
@@ -95,6 +106,7 @@
                 android:fontFamily="times"/>
 
             <EditText
+                android:id="@+id/drugs_note"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:inputType="text|date"
@@ -119,6 +131,7 @@
                     android:layout_margin="10dp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_drugs_add"
                     android:layout_width="123dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
@@ -154,386 +167,35 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="#FFFFFF"
+                    android:orientation="horizontal"
                     android:layout_margin="10dp">
-
-
-                    <LinearLayout
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Search :"
+                        android:textStyle="bold"
+                        android:fontFamily="times"
+                        android:textSize="20sp"
+                        android:layout_marginTop="20dp"/>
+                    <androidx.appcompat.widget.SearchView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="ID "
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="1234567"
-                            android:textAlignment="center"
-                            android:textSize="14sp"/>
+                        android:background="@drawable/information_barder_layout"
+                        android:layout_margin="6dp"
+                        android:padding="0dp"
+                        android:hint="Search by Drug Id or Trade / Generic Name"/>
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="Trade Name "
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Ariki Satovo"
-                            android:textAlignment="center"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="Generic Name "
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Alchohol"
-                            android:textAlignment="center"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center">
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="20dp"
-                            android:src="@drawable/update"
-
-                            tools:ignore="UnknownId" />
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="24dp"
-                            android:src="@drawable/delete"/>
-                    </LinearLayout>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
                     android:background="#EAEBED"/>
 
-                <LinearLayout
+
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="#FFFFFF"
-                    android:layout_margin="10dp">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="ID "
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="1234567"
-                            android:textAlignment="center"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="Trade Name "
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Ariki Satovo"
-                            android:textAlignment="center"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="Generic Name "
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Alchohol"
-                            android:textAlignment="center"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center">
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="20dp"
-                            android:src="@drawable/update"
-
-                            tools:ignore="UnknownId" />
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="24dp"
-                            android:src="@drawable/delete"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="#EAEBED"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="#FFFFFF"
-                    android:layout_margin="10dp">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="ID "
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="1234567"
-                            android:textAlignment="center"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="Trade Name "
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Ariki Satovo"
-                            android:textAlignment="center"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="Generic Name "
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Alchohol"
-                            android:textAlignment="center"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center">
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="20dp"
-                            android:src="@drawable/update"
-
-                            tools:ignore="UnknownId" />
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="24dp"
-                            android:src="@drawable/delete"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="#EAEBED"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="#FFFFFF"
-                    android:layout_margin="10dp">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="ID "
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="1234567"
-                            android:textAlignment="center"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="Trade Name "
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Ariki Satovo"
-                            android:textAlignment="center"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:text="Generic Name "
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Alchohol"
-                            android:textAlignment="center"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center">
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="20dp"
-                            android:src="@drawable/update"
-
-                            tools:ignore="UnknownId" />
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="24dp"
-                            android:src="@drawable/delete"/>
-                    </LinearLayout>
-                </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:id="@+id/drugs_recycler"/>
 
 
             </LinearLayout>

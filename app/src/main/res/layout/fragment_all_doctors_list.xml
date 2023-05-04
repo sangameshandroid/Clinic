@@ -5,9 +5,52 @@
     android:layout_height="match_parent"
     tools:context=".AllDoctorsListFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/doctors_recyclerview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Doctors List"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:layout_margin="10dp"
+                android:fontFamily="times"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="16sp"
+                android:textColor="#7366FF"
+                android:layout_margin="10dp"
+                android:fontFamily="times"
+                android:drawableRight="@drawable/ic_right_arrow"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Doctors List"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_margin="10dp"
+                android:fontFamily="times"/>
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/doctors_recycler"/>
+    </LinearLayout>
 
 </LinearLayout>

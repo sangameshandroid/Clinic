@@ -2,7 +2,6 @@ package com.example.clinic;
 
 import static android.app.Activity.RESULT_OK;
 
-import static com.example.clinic.R.id.doctor_img;
 import static com.example.clinic.R.id.genericnamespinner;
 
 import android.annotation.SuppressLint;
@@ -225,6 +224,8 @@ public class RegisterAllAdminFragment extends Fragment implements AdapterView.On
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
+                        FirebaseUser user = task.getResult().getUser();
+                        String uid = user.getUid();
 
                        /* fStore.collection("User").document(FirebaseAuth.getInstance().getUid()).set(new dataholder(firstname,lastname,email,
                                 mobile,date,zip,userid,userpassword,address,bio, gender,language, nationality, city, usertype, specilization));*/
@@ -235,7 +236,7 @@ public class RegisterAllAdminFragment extends Fragment implements AdapterView.On
                         dataholder dholder = new dataholder(firstname,lastname,email,
                                 mobile,date,zip,userid,userpassword,address,bio, gender,language, nationality, city, usertype, specilization);
                         Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
-                        reference.push().setValue(dholder);
+                        reference.child(uid).setValue(dholder);
                     }
                 });
 

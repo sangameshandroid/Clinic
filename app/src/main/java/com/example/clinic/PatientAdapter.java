@@ -74,7 +74,7 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientV
         Patient patient = patientList.get(position);
 
         if (patient.getFname() != null) {
-            holder.patient_firstname.setText("Mr./Ms.  " + patient.getFname() + " " + patient.getLname());
+            holder.patient_firstname.setText("Mr/Ms. " + patient.getFname() + " " + patient.getLname());
         } else {
             Toast.makeText(holder.patient_firstname.getContext(), "Feild is null", Toast.LENGTH_SHORT).show();
         }
