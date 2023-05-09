@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private List<navitems> generateNavItemList(){
+    private List<navitems>  generateNavItemList(){
         List<navitems> navitem = new ArrayList<>();
 
         navitem.add(new navitems("DashBoard", R.drawable.dashboard1,null));

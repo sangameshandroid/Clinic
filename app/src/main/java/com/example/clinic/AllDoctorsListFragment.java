@@ -28,7 +28,7 @@ public class AllDoctorsListFragment extends Fragment {
 
     private RecyclerView doctors_recycler;
     private DoctorAdapter doctorAdapter;
-    private List<Doctor> doctorlist;
+    private List<Doctor>   doctorlist;
 
 
 

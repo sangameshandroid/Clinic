@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -77,13 +79,17 @@ public class NewAppointmentFragment extends Fragment implements AdapterView.OnIt
                 rootNode = FirebaseDatabase.getInstance();
                 reference = rootNode.getReference().child("Appointment");
 
+                String key = reference.push().getKey(); // generate unique key
+
+
 
                 PatientAppointment patientAppointment = new PatientAppointment(date, timings, patient);
 
-                reference.setValue(patientAppointment).addOnSuccessListener(new OnSuccessListener<Void>() {
+                reference.child(key).setValue(patientAppointment).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(getContext(), "Appointment Set Successfully", Toast.LENGTH_SHORT).show();
+
 
                     }
                 });

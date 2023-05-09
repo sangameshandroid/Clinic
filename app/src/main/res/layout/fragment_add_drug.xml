@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AddDrugFragment"
     android:background="#EAEBED">
 
@@ -183,7 +184,7 @@
                         android:background="@drawable/information_barder_layout"
                         android:layout_margin="6dp"
                         android:padding="0dp"
-                        android:hint="Search by Drug Id or Trade / Generic Name"/>
+                        android:hint="Search by Drug Id or Trade / Generic Name" />
 
                 </LinearLayout>
                 <View

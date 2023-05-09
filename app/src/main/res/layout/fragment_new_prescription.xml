@@ -73,25 +73,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#F4F7F7"/>
-            <EditText
+            <Spinner
+                android:id="@+id/prescription_patient_name"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="Full Name"
                 android:padding="8dp"
-                android:background="@drawable/information_barder_layout"
-                android:layout_margin="10dp"/>
+                android:prompt="@array/Prescription_Patient"
+                android:background="@drawable/spinner_languages"
+                android:layout_margin="10dp"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="10dp"
+            android:layout_margin="4dp"
             android:background="#FFFFFF">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Drug List"
+                android:text="Drug And Tests"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="20sp"
@@ -100,97 +103,89 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#000000"/>
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="Type"
-                android:padding="8dp"
-                android:background="@drawable/information_barder_layout"
-                android:layout_margin="10dp"/>
-            <Spinner
-                android:layout_width="match_parent"
-                android:id="@+id/selectdrugspinner"
-                android:layout_height="40dp"
-                android:background="@drawable/spinner_languages"
-                android:layout_margin="10dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="Mg / Mi"
-                android:padding="8dp"
-                android:background="@drawable/information_barder_layout"
-                android:layout_margin="10dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="Dose"
-                android:padding="8dp"
-                android:background="@drawable/information_barder_layout"
-                android:layout_margin="10dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="Duration"
-                android:padding="8dp"
-                android:background="@drawable/information_barder_layout"
-                android:layout_margin="10dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="Advice Comment "
-                android:padding="8dp"
-                android:background="@drawable/information_barder_layout"
-                android:layout_margin="10dp"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Add Drug"
-                android:textColor="@color/white"
-                android:background="@drawable/save_btn"
-                android:layout_gravity="right"
-                android:layout_margin="10dp"/>
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            android:background="#FFFFFF">
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tests List"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:textStyle="bold"
+                android:orientation="horizontal">
+                <Spinner
+                    android:layout_width="160dp"
+                    android:id="@+id/selectdrugspinner"
+                    android:layout_height="40dp"
+                    android:background="@drawable/spinner_languages"
+                    android:layout_margin="10dp"/>
+                <EditText
+                    android:id="@+id/medicine_duration"
+                    android:layout_width="160dp"
+                    android:layout_height="40dp"
+                    android:hint="Duration"
+                    android:padding="8dp"
+                    android:background="@drawable/information_barder_layout"
+                    android:layout_margin="10dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/medicine_dose"
+                    android:layout_width="160dp"
+                    android:layout_height="40dp"
+                    android:hint="Dose"
+                    android:padding="8dp"
+                    android:background="@drawable/information_barder_layout"
+                    android:layout_margin="10dp"/>
+                <EditText
+                    android:id="@+id/medicine_mg"
+                    android:layout_width="160dp"
+                    android:layout_height="40dp"
+                    android:hint="Mg / Ml"
+                    android:padding="8dp"
+                    android:background="@drawable/information_barder_layout"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
+            <EditText
+                android:id="@+id/medicine_comment"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Doctor Advice Comment "
+                android:padding="8dp"
+                android:background="@drawable/information_barder_layout"
                 android:layout_margin="10dp"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#000000"/>
-            <Spinner
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:id="@+id/selecttestsspinner"
-                android:layout_height="40dp"
-                android:background="@drawable/spinner_languages"
-                android:layout_margin="10dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="Discriptions "
-                android:padding="8dp"
-                android:background="@drawable/information_barder_layout"
-                android:layout_margin="10dp" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:id="@+id/selecttestsspinner"
+                    android:layout_height="40dp"
+                    android:background="@drawable/spinner_languages"
+                    android:layout_margin="10dp"/>
+                <EditText
+                    android:id="@+id/test_discri"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Discriptions Of Test "
+                    android:padding="8dp"
+                    android:background="@drawable/information_barder_layout"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Add Test"
+                android:text="Save"
                 android:textColor="@color/white"
                 android:background="@drawable/save_btn"
                 android:layout_gravity="right"
                 android:layout_margin="10dp"/>
+
 
         </LinearLayout>
         <LinearLayout
@@ -200,6 +195,7 @@
             android:background="#FFFFFF"
             android:layout_margin="10dp">
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_create_prescriptions"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Create Prescription"

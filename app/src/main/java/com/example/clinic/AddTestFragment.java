@@ -83,10 +83,6 @@ public class AddTestFragment extends Fragment {
                 }
 
 
-
-
-
-
             }
         });
 

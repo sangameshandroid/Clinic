@@ -127,7 +127,9 @@
         <item>8:00 - 8:30</item>
         <item>8:30 - 9:00</item>
     </string-array>
-
+    <string-array name="Prescription_Patient">
+        <item>Choose Patient Name</item>
+    </string-array>
 
 
 </resources>
